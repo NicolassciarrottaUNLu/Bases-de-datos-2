@@ -33,7 +33,7 @@ public class Firebird {
 		
 	}
 	
-	public int insert(int id, double monto) {
+	public synchronized int insert(int id, double monto) {
 			try {
 				consulta = "INSERT INTO " + table +" VALUES("+id+","+monto+")";
 				statement = connection.createStatement();
@@ -72,7 +72,7 @@ public class Firebird {
 		}
 	}
 	
-	public Factura select(int id) {
+	public synchronized Factura select(int id) {
 		try {
 			consulta = "SELECT * FROM "+table+ " WHERE ID="+id;
 			statement = connection.createStatement();
@@ -94,7 +94,7 @@ public class Firebird {
 		}
 	}
 	
-	public ArrayList<Factura> selectAll() {
+	public synchronized ArrayList<Factura> selectAll() {
 		try {
 			consulta = "SELECT * FROM "+table;
 			ArrayList<Factura> facturas = new ArrayList<Factura>();
